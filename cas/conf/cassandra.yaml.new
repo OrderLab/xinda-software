@@ -1,0 +1,13 @@
+cluster_name: 'MyCassandraCluster'
+num_tokens: 8
+seed_provider:
+  - class_name: org.apache.cassandra.locator.SimpleSeedProvider
+    parameters:
+         - seeds: "10.0.0.214"
+listen_address: 10.0.0.214
+rpc_address:
+endpoint_snitch: SimpleSnitch
+data_file_directories:
+  - /home/ruiming/cas/data
+commitlog_directory: /home/ruiming/cas/data/commitlog
+saved_caches_directory: /home/ruiming/cas/data/saved_caches
