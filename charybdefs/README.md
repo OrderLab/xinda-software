@@ -1,5 +1,46 @@
+IMPORTANT (last edited by Ruiming)
+==========
 
-CharybdeFS
+This repo duplicates (mostly) from [OrderLab/charybdefs](https://github.com/OrderLab/charybdefs), except for some custom changes:
+* Modify inject_client.py at Line 67:
+    * **Change** `print("Done. Injection clear time: " + datetime.now())` **to** `print("Done. Injection clear time: " , datetime.now())`
+* Comment lines 173-176 in `server.cc`
+* Comment line 35 in `start.sh`
+  * :warning: Only if you get `kernel/fs/fuse/fuse.ko` when you
+    ```
+    grep -i fuse /lib/modules/`uname -r`/modules.builtin
+    ```
+    
+Configuration (last edited by Ruiming)
+==========
+```
+# Compile
+cd charybdefs
+dpkg -s g++ cmake libfuse-dev python-thrift pkg-config
+thrift -r --gen cpp server.thrift
+thrift -r --gen py server.thrift
+cmake CMakeLists.txt
+make -j8
+# Start charybdefs
+./start.sh /data/ruiming/temp/fuser-ruiming /data/ruiming/temp/fuser
+
+# Inject slow faults
+./inject_client --io_error
+
+# Clean up
+./inject_client --dump
+./inject_client --clear
+
+# Stop charybdefs
+./stop.sh /data/ruiming/temp/fuser-ruiming
+```
+> In `./start.sh $dir1 $dir2`: 
+> 1. `dir1` and `dir2` are mounted automatically. No need to mount them by yourself.
+> 2. Faults can ONLY affect `dir1`. We should trap distributed systems to use `dir1` as the datadir
+> 3. `dir2` will not be affected at all.
+
+
+CharybdeFS (Below are the same in [OrderLab/charybdefs](https://github.com/OrderLab/charybdefs))
 ==========
 
 A fuse based fault injection filesystem
