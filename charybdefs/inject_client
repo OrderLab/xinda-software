@@ -1,0 +1,13 @@
+#!/bin/bash
+
+my_dir=$(cd "$(dirname "${BASH_SOURCE-$0}")"; pwd)
+
+pushd $my_dir > /dev/null
+
+if [ ! -d gen-py ]; then
+    thrift -r --gen py server.thrift &> /dev/null
+fi
+
+python2 $my_dir/inject_client.py "$@"
+
+popd > /dev/null

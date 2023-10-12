@@ -1,0 +1,11 @@
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+gen-cpp/
+gen-py/
+*.a
+charybdefs
+*.swp
+charybdefs.output
+charybdefs.pid
