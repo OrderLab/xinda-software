@@ -9,3 +9,5 @@
 * `./ycsb-0.17.0`:
   * contains everything you need to run YCSB and the Cassandra/HBase bindings **(need to add mongoDB and etcd in the future)**
   * some custom modifications have been made to the HBase bindings
+* `./charybdefs`:
+  * Mostly duplicated from [OrderLab/charybdefs](https://github.com/OrderLab/charybdefs) with some minor changes. See the README inside `./charybdefs`.
