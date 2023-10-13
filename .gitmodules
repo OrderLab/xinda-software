@@ -1,3 +1,6 @@
 [submodule "hadoop-3.2.1"]
 	path = hadoop-3.2.1
 	url = git@github.com:OrderLab/hadoop-3.2.1.git
+[submodule "go-ycsb"]
+	path = go-ycsb
+	url = git@github.com:pingcap/go-ycsb.git
