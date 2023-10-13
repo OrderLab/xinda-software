@@ -26,6 +26,7 @@ make -j8
 
 # Inject slow faults
 ./inject_client --io_error
+./inject_client --delay 1000000 # 1s delay (unit: us)
 
 # Clean up
 ./inject_client --dump
