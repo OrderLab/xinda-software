@@ -1,5 +1,6 @@
 IMPORTANT (last edited by Ruiming)
 ==========
+(last edited by Ruiming, Oct 15th, 2023)
 
 This repo duplicates (mostly) from [OrderLab/charybdefs](https://github.com/OrderLab/charybdefs), except for some custom changes:
 * Modify inject_client.py at Line 67:
@@ -10,9 +11,49 @@ This repo duplicates (mostly) from [OrderLab/charybdefs](https://github.com/Orde
     ```
     grep -i fuse /lib/modules/`uname -r`/modules.builtin
     ```
-    
+* Add `-o nonempty -o allow_root` flag to `./start.sh` to enable double mounting (local-dir -> data-dir-on-container & local-dir -> fuser-dir)
+
+Inject Slow Faults to Running Docker Containers
+==========
+(last edited by Ruiming, Oct 15th, 2023)
+
+## Prerequisite
+* Make sure that the `user_allow_other` flag is enabled in `/etc/fuse.conf` (:warning: need root access)
+* Modify the docker-compose file to specify a local directory to mount the data directory on the container. Take Cassandra as an example:
+```
+(...)
+   volumes:
+      - /path/to/local/directory/cassandra:/var/lib/cassandra/data
+(...)
+```
+* Modify the docker-compose file to specify a local user. If we ignore this step, the local directory will need root access (user:group set as root:root)
+```
+(...)
+   user: ${CURRENT_UID}
+(...)
+```
+## Tutorial
+```
+# Housecleaning
+rm -rf /path/to/local/directory/cassandra && mkdir /path/to/local/directory/cassandra
+rm -rf /path/to/fuser/directory && mkdir /path/to/fuser/directory
+
+# Start charybdeFS first
+cd /path/to/charybdefs
+./start.sh /path/to/local/directory /path/to/fuser/directory # !!Attention!! it's not /path/to/local/directory/cassandra but /path/to/local/directory
+
+# Start the Cassandra cluster
+cd /path/to/docker-cassandra/
+CURRENT_UID=$(id -u):$(id -g) docker-compose  up -d
+
+# Then we can run YCSB benchmark on Cassandra while injecting any kinds of charybdefs slow faults
+
+```
+
+
 Configuration (last edited by Ruiming)
 ==========
+(last edited by Ruiming, Oct 12th, 2023)
 ```
 # Compile
 cd charybdefs
