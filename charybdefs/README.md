@@ -1,4 +1,4 @@
-IMPORTANT (last edited by Ruiming)
+IMPORTANT
 ==========
 (last edited by Ruiming, Oct 15th, 2023)
 
@@ -51,7 +51,7 @@ CURRENT_UID=$(id -u):$(id -g) docker-compose  up -d
 ```
 
 
-Configuration (last edited by Ruiming)
+Configuration
 ==========
 (last edited by Ruiming, Oct 12th, 2023)
 ```
