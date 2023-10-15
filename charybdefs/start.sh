@@ -33,7 +33,7 @@ if [ -f charybdefs.pid ]; then
 fi
 
 #sudo modprobe fuse
-./charybdefs -f $mount_point -omodules=subdir,subdir=$data_dir --port=$port > charybdefs.output 2>&1 &
+./charybdefs -f $mount_point -omodules=subdir,subdir=$data_dir --port=$port -o nonempty -o allow_root > charybdefs.output 2>&1 &
 cdfs_pid=$!
 sleep 1
 if ps -p$cdfs_pid > /dev/null; then
