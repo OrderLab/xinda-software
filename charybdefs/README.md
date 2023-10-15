@@ -40,7 +40,10 @@ rm -rf /path/to/fuser/directory && mkdir /path/to/fuser/directory
 
 # Start charybdeFS first
 cd /path/to/charybdefs
-./start.sh /path/to/local/directory /path/to/fuser/directory # !!Attention!! it's not /path/to/local/directory/cassandra but /path/to/local/directory
+./start.sh /path/to/local/directory /path/to/fuser/directory
+## !!ATTENTION!!
+## It's not /path/to/local/directory/cassandra but /path/to/local/directory
+## In this case, we can jail cassandra in /path/to/local/directory/cassandra
 
 # Start the Cassandra cluster
 cd /path/to/docker-cassandra/
