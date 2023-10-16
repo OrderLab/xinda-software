@@ -23,7 +23,7 @@ Inject Slow Faults to Running Docker Containers
 ```
 (...)
    volumes:
-      - /path/to/local/directory/cassandra/data:/var/lib/cassandra/data
+      - /path/to/local/directory/cassandra:/var/lib/cassandra/data
 (...)
 ```
 * Modify the docker-compose file to specify a local user. If we ignore this step, the local directory will need root access (user:group set as root:root)
