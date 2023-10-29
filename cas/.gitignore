@@ -1,1 +1,1 @@
-pylib/cqlshlib/__pycache__
+pylib/cqlshlib/__pycache__/*.pyc
