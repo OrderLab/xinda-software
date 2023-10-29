@@ -4,6 +4,8 @@
 [submodule "go-ycsb-source"]
 	path = go-ycsb-source
 	url = git@github.com:pingcap/go-ycsb.git
+	update = none
 [submodule "kafka"]
 	path = kafka
 	url = https://github.com/apache/kafka
+	update = none
