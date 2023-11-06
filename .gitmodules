@@ -9,3 +9,6 @@
 	path = kafka
 	url = https://github.com/apache/kafka
 	update = none
+[submodule "openmessaging"]
+	path = openmessaging
+	url = git@github.com:OrderLab/openmessaging.git
