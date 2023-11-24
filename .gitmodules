@@ -15,3 +15,6 @@
 [submodule "hadoop-3.3.6"]
 	path = hadoop-3.3.6
 	url = git@github.com:OrderLab/hadoop-3.3.6.git
+[submodule "hadoop-3.0.0"]
+	path = hadoop-3.0.0
+	url = git@github.com:OrderLab/hadoop-3.0.0.git
